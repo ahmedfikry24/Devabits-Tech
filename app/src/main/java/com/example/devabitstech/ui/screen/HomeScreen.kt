@@ -14,8 +14,10 @@ import com.example.devabitstech.ui.screen.components.FailureDialog
 import com.example.devabitstech.ui.screen.components.LoadingContent
 import com.example.devabitstech.ui.screen.components.NextPrayerSection
 import com.example.devabitstech.ui.screen.components.PrayerItem
+import com.example.devabitstech.ui.screen.components.PrayersListItems
 import com.example.devabitstech.ui.screen.components.RequestNotificationPermission
 import com.example.devabitstech.ui.screen.components.VisibleContent
+import com.example.devabitstech.ui.screen.vm.HomeInteractions
 import com.example.devabitstech.ui.screen.vm.HomeUiState
 import com.example.devabitstech.ui.screen.vm.HomeViewModel
 import com.example.devabitstech.ui.screen.vm.ScreenState
@@ -29,11 +31,15 @@ fun HomeScreen() {
 
     HomeContent(
         state = state,
+        interactions = viewModel
     )
 }
 
 @Composable
-private fun HomeContent(state: HomeUiState) {
+private fun HomeContent(
+    state: HomeUiState,
+    interactions: HomeInteractions
+) {
     LoadingContent(isVisible = state.screenState == ScreenState.LOADING)
     VisibleContent(isVisible = state.screenState == ScreenState.VISIBLE) {
         RequestNotificationPermission()
@@ -42,26 +48,19 @@ private fun HomeContent(state: HomeUiState) {
             verticalArrangement = Arrangement.spacedBy(Theme.spacing.space16)
         ) {
             NextPrayerSection(state.upcomingPrayer)
-            LazyColumn(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(Theme.spacing.space16),
-                contentPadding = PaddingValues(Theme.spacing.space16)
-            ) {
-                items(state.prayers, key = { it.id ?: it.name }) { prayer ->
-                    PrayerItem(
-                        prayer,
-                        isUpcoming = prayer == state.upcomingPrayer
-                    )
-                }
-            }
+            PrayersListItems(
+                prayers = state.prayers,
+                upcomingPrayer = state.upcomingPrayer,
+                modifier = Modifier.weight(1f)
+            )
         }
     }
     if (state.screenState == ScreenState.ERROR) {
         FailureDialog(
             title = "Something went wrong",
             description = state.errorMessage ?: "can not recognize the error",
-            onDismiss = {},
-            onButtonClick = {}
+            onDismiss = interactions::hideErrorDialog,
+            onButtonClick = interactions::initData
         )
     }
 }

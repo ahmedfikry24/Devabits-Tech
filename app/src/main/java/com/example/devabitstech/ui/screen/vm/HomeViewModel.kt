@@ -3,10 +3,7 @@ package com.example.devabitstech.ui.screen.vm
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.devabitstech.data.utils.PrayerAlarmScheduler
-import com.example.devabitstech.domain.entity.DateNameInfo
-import com.example.devabitstech.domain.entity.HijriDate
 import com.example.devabitstech.domain.entity.Prayer
-import com.example.devabitstech.domain.entity.PrayerDate
 import com.example.devabitstech.domain.usecase.GetPrayerTimeByDateUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
@@ -16,21 +13,19 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.Duration
-import java.time.LocalDateTime
 import java.time.LocalTime
-import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
 class HomeViewModel(
     private val getPrayerTimeByDateUseCase: GetPrayerTimeByDateUseCase,
     private val scheduler: PrayerAlarmScheduler
-) : ViewModel() {
+) : ViewModel(), HomeInteractions {
 
     private val _state = MutableStateFlow(HomeUiState())
     val state: StateFlow<HomeUiState> = _state.asStateFlow()
 
     init {
-        initDate()
+        initData()
     }
 
     private fun <T> tryToDoOperation(
@@ -49,7 +44,7 @@ class HomeViewModel(
         }
     }
 
-    fun initDate() {
+    override fun initData() {
         tryToDoOperation(
             onStart = { _state.update { it.copy(screenState = ScreenState.LOADING) } },
             operation = { getPrayerTimeByDateUseCase() },
@@ -72,6 +67,15 @@ class HomeViewModel(
                 }
             }
         )
+    }
+
+    override fun hideErrorDialog() {
+        _state.update {
+            it.copy(
+                screenState = ScreenState.VISIBLE,
+                errorMessage = null
+            )
+        }
     }
 
     private fun getUpcomingPrayer(prayers: List<Prayer>): Prayer {
