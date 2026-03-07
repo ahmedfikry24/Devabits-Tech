@@ -49,14 +49,15 @@ class HomeViewModel(
             onStart = { _state.update { it.copy(screenState = ScreenState.LOADING) } },
             operation = { getPrayerTimeByDateUseCase() },
             onSuccess = { prayers ->
+                val prayersOnly = prayers.filter { it.name != "Sunrise" }
                 _state.update {
                     it.copy(
                         screenState = ScreenState.VISIBLE,
-                        prayers = prayers,
-                        upcomingPrayer = getUpcomingPrayer(prayers)
+                        prayers = prayersOnly,
+                        upcomingPrayer = getUpcomingPrayer(prayersOnly)
                     )
                 }
-                scheduler.scheduleAll(prayers)
+                scheduler.scheduleAll(prayersOnly)
             },
             onError = { error ->
                 _state.update {
