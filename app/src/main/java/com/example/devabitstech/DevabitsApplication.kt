@@ -1,9 +1,11 @@
 package com.example.devabitstech
 
 import android.app.Application
+import com.example.devabitstech.di.localModule
 import com.example.devabitstech.di.networkMode
 import com.example.devabitstech.di.repositoryModule
 import com.example.devabitstech.di.useCaseModule
+import com.example.devabitstech.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -13,7 +15,7 @@ class DevabitsApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@DevabitsApplication)
-            modules(networkMode, repositoryModule, useCaseModule)
+            modules(networkMode, localModule, repositoryModule, useCaseModule, viewModelModule)
         }
     }
 }
