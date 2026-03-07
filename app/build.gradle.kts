@@ -31,6 +31,15 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    defaultConfig {
+        buildConfigField("String","BASE_URL","\"https://api.aladhan.com/v1/\"")
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
