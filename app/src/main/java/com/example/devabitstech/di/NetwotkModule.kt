@@ -2,10 +2,12 @@ package com.example.devabitstech.di
 
 import com.example.devabitstech.BuildConfig
 import com.example.devabitstech.data.remote.ApiService
+import com.example.devabitstech.data.remote.utils.NetworkConnectivityManager
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -45,4 +47,6 @@ val networkMode = module {
             .build()
             .create(ApiService::class.java)
     }
+
+    single { NetworkConnectivityManager(androidContext()) }
 }

@@ -11,8 +11,8 @@ interface ApiService {
     @GET("timingsByCity/{date}")
     suspend fun getPrayerTimesByDate(
         @Path("date") date: String,
-        @Query("city") city: String,
-        @Query("country") country: String,
-        @Query("method") method: Int
+        @Query("city") city: String = "Cairo",
+        @Query("country") country: String = "Egypt",
+        @Query("method") method: Int = 5
     ): Response<PrayerTimesDto>
 }
