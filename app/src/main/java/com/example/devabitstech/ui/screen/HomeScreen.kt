@@ -14,6 +14,7 @@ import com.example.devabitstech.ui.screen.components.FailureDialog
 import com.example.devabitstech.ui.screen.components.LoadingContent
 import com.example.devabitstech.ui.screen.components.NextPrayerSection
 import com.example.devabitstech.ui.screen.components.PrayerItem
+import com.example.devabitstech.ui.screen.components.RequestNotificationPermission
 import com.example.devabitstech.ui.screen.components.VisibleContent
 import com.example.devabitstech.ui.screen.vm.HomeUiState
 import com.example.devabitstech.ui.screen.vm.HomeViewModel
@@ -35,6 +36,7 @@ fun HomeScreen() {
 private fun HomeContent(state: HomeUiState) {
     LoadingContent(isVisible = state.screenState == ScreenState.LOADING)
     VisibleContent(isVisible = state.screenState == ScreenState.VISIBLE) {
+        RequestNotificationPermission()
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(Theme.spacing.space16)
