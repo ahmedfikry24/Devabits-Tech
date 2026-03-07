@@ -11,196 +11,196 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class PrayerTimesDto(
     @SerialName("code")
-    val code: Int?,
+    val code: Int? = null,
     @SerialName("data")
-    val `data`: Data?,
+    val data: Data? = null,
     @SerialName("status")
-    val status: String?
+    val status: String? = null
 ) {
     @Serializable
     data class Data(
         @SerialName("date")
-        val date: Date?,
+        val date: Date? = null,
         @SerialName("meta")
-        val meta: Meta?,
+        val meta: Meta? = null,
         @SerialName("timings")
-        val timings: Timings?
+        val timings: Timings? = null
     )
 
     @Serializable
     data class Date(
         @SerialName("gregorian")
-        val gregorian: Gregorian?,
+        val gregorian: Gregorian? = null,
         @SerialName("hijri")
-        val hijri: Hijri?,
+        val hijri: Hijri? = null,
         @SerialName("readable")
-        val readable: String?,
+        val readable: String? = null,
         @SerialName("timestamp")
-        val timestamp: String?
+        val timestamp: String? = null
     )
 
     @Serializable
     data class Gregorian(
         @SerialName("date")
-        val date: String?,
+        val date: String? = null,
         @SerialName("day")
-        val day: String?,
+        val day: String? = null,
         @SerialName("designation")
-        val designation: Designation?,
+        val designation: Designation? = null,
         @SerialName("format")
-        val format: String?,
+        val format: String? = null,
         @SerialName("lunarSighting")
-        val lunarSighting: Boolean?,
+        val lunarSighting: Boolean? = null,
         @SerialName("month")
-        val month: Month?,
+        val month: Month? = null,
         @SerialName("weekday")
-        val weekday: Weekday?,
+        val weekday: Weekday? = null,
         @SerialName("year")
-        val year: String?
+        val year: String? = null
     )
 
     @Serializable
     data class Hijri(
         @SerialName("date")
-        val date: String?,
+        val date: String? = null,
         @SerialName("day")
-        val day: String?,
+        val day: String? = null,
         @SerialName("designation")
-        val designation: Designation?,
+        val designation: Designation? = null,
         @SerialName("format")
-        val format: String?,
+        val format: String? = null,
         @SerialName("method")
-        val method: String?,
+        val method: String? = null,
         @SerialName("month")
-        val month: Month?,
+        val month: Month? = null,
         @SerialName("weekday")
-        val weekday: Weekday?,
+        val weekday: Weekday? = null,
         @SerialName("year")
-        val year: String?
+        val year: String? = null
     )
 
     @Serializable
     data class Designation(
         @SerialName("abbreviated")
-        val abbreviated: String?,
+        val abbreviated: String? = null,
         @SerialName("expanded")
-        val expanded: String?
+        val expanded: String? = null
     )
 
     @Serializable
     data class Month(
         @SerialName("ar")
-        val ar: String?,
+        val ar: String? = null,
         @SerialName("days")
-        val days: Int?,
+        val days: Int? = null,
         @SerialName("en")
-        val en: String?,
+        val en: String? = null,
         @SerialName("number")
-        val number: Int?
+        val number: Int? = null
     )
 
     @Serializable
     data class Weekday(
         @SerialName("ar")
-        val ar: String?,
+        val ar: String? = null,
         @SerialName("en")
-        val en: String?
+        val en: String? = null
     )
 
     @Serializable
     data class Method(
         @SerialName("id")
-        val id: Int?,
+        val id: Int? = null,
         @SerialName("location")
-        val location: Location?,
+        val location: Location? = null,
         @SerialName("name")
-        val name: String?,
+        val name: String? = null,
         @SerialName("params")
-        val params: Params?
+        val params: Params? = null
     )
 
     @Serializable
     data class Meta(
         @SerialName("latitude")
-        val latitude: Double?,
+        val latitude: Double? = null,
         @SerialName("latitudeAdjustmentMethod")
-        val latitudeAdjustmentMethod: String?,
+        val latitudeAdjustmentMethod: String? = null,
         @SerialName("longitude")
-        val longitude: Double?,
+        val longitude: Double? = null,
         @SerialName("method")
-        val method: Method?,
+        val method: Method? = null,
         @SerialName("midnightMode")
-        val midnightMode: String?,
+        val midnightMode: String? = null,
         @SerialName("offset")
-        val offset: Offset?,
+        val offset: Offset? = null,
         @SerialName("school")
-        val school: String?,
+        val school: String? = null,
         @SerialName("timezone")
-        val timezone: String?
+        val timezone: String? = null
     )
 
     @Serializable
     data class Location(
         @SerialName("latitude")
-        val latitude: Double?,
+        val latitude: Double? = null,
         @SerialName("longitude")
-        val longitude: Double?
+        val longitude: Double? = null
     )
 
     @Serializable
     data class Params(
         @SerialName("Fajr")
-        val fajr: Double?,
+        val fajr: Double? = null,
         @SerialName("Isha")
-        val isha: Double?
+        val isha: Double? = null
     )
 
     @Serializable
     data class Offset(
         @SerialName("Asr")
-        val asr: Int?,
+        val asr: Int? = null,
         @SerialName("Dhuhr")
-        val dhuhr: Int?,
+        val dhuhr: Int? = null,
         @SerialName("Fajr")
-        val fajr: Int?,
+        val fajr: Int? = null,
         @SerialName("Imsak")
-        val imsak: Int?,
+        val imsak: Int? = null,
         @SerialName("Isha")
-        val isha: Int?,
+        val isha: Int? = null,
         @SerialName("Maghrib")
-        val maghrib: Int?,
+        val maghrib: Int? = null,
         @SerialName("Midnight")
-        val midnight: Int?,
+        val midnight: Int? = null,
         @SerialName("Sunrise")
-        val sunrise: Int?,
+        val sunrise: Int? = null,
         @SerialName("Sunset")
-        val sunset: Int?
+        val sunset: Int? = null
     )
 
     @Serializable
     data class Timings(
         @SerialName("Asr")
-        val asr: String?,
+        val asr: String? = null,
         @SerialName("Dhuhr")
-        val dhuhr: String?,
+        val dhuhr: String? = null,
         @SerialName("Fajr")
-        val fajr: String?,
+        val fajr: String? = null,
         @SerialName("Firstthird")
-        val firstthird: String?,
+        val firstthird: String? = null,
         @SerialName("Imsak")
-        val imsak: String?,
+        val imsak: String? = null,
         @SerialName("Isha")
-        val isha: String?,
+        val isha: String? = null,
         @SerialName("Lastthird")
-        val lastthird: String?,
+        val lastthird: String? = null,
         @SerialName("Maghrib")
-        val maghrib: String?,
+        val maghrib: String? = null,
         @SerialName("Midnight")
-        val midnight: String?,
+        val midnight: String? = null,
         @SerialName("Sunrise")
-        val sunrise: String?,
+        val sunrise: String? = null,
         @SerialName("Sunset")
-        val sunset: String?
+        val sunset: String? = null
     )
 }
 
